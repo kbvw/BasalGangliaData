@@ -32,7 +32,7 @@ NEURON {
 	SUFFIX hd_lts
 	NONSPECIFIC_CURRENT i
         RANGE ghdbar, vhalfl
-        GLOBAL linf,taul
+        RANGE linf,taul
         RANGE modDA, maxModDA, levelDA
 }
 

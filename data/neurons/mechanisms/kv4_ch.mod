@@ -36,7 +36,7 @@ NEURON {
 	SUFFIX kv4_ch
 	USEION k READ ek WRITE ik
 	RANGE g, ik, gbar
-	GLOBAL alpha, beta
+	RANGE alpha, beta
         RANGE modDA, maxModDA, levelDA
 }
 

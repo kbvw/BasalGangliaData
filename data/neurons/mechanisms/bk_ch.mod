@@ -6,7 +6,7 @@ NEURON {
        USEION k READ ek WRITE ik
        USEION ca READ cai
        RANGE gbar, ik, g
-       GLOBAL minf, mtau, hinf, htau, zinf, ztau
+       RANGE minf, mtau, hinf, htau, zinf, ztau
 }
 
 UNITS {

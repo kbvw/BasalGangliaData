@@ -36,7 +36,7 @@ NEURON {
 	SUFFIX cap_ch
 	USEION ca READ cai, cao WRITE ica
 	RANGE gbar, ica ,g
-	GLOBAL minf,mtau
+	RANGE minf,mtau
         RANGE modDA, maxModDA, levelDA
         RANGE modACh, maxModACh, levelACh
 }

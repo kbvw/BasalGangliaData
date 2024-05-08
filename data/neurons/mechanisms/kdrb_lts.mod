@@ -28,7 +28,7 @@ NEURON {
 	SUFFIX kdrb_lts
 	USEION k READ ek WRITE ik
     RANGE gkdr,gkdrbar, sh
-	GLOBAL ninf,taun
+	RANGE ninf,taun
 }
 
 STATE {
