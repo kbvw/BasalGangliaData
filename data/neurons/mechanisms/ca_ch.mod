@@ -13,7 +13,6 @@ NEURON {
 	SUFFIX ca_ch
 	USEION ca READ cao, cai, ica WRITE cai, ica
 	RANGE ipump,last_ipump,test
-	GLOBAL DFree, k1buf, k2buf, k1, k2, k3, k4, totpump, totbuf
 	GLOBAL vol, Buffer0
 }
 

@@ -35,7 +35,7 @@ NEURON {
 	SUFFIX na3_lts
 	USEION na READ ena WRITE ina
 	RANGE  gbar, ar, sh, ina
-	GLOBAL minf, hinf, mtau, htau, sinf, taus,qinf, thinf
+	GLOBAL minf, hinf, mtau, htau, sinf, taus
 	RANGE modDA, maxModDA, levelDA
 }
 

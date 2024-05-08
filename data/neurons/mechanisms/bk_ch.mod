@@ -7,9 +7,6 @@ NEURON {
        USEION ca READ cai
        RANGE gbar, ik, g
        GLOBAL minf, mtau, hinf, htau, zinf, ztau
-       GLOBAL m_vh, m_k, mtau_y0, mtau_vh1, mtau_vh2, mtau_k1, mtau_k2
-       GLOBAL z_coef, ztau
-       GLOBAL h_y0, h_vh, h_k, htau_y0, htau_vh1, htau_vh2, htau_k1, htau_k2
 }
 
 UNITS {
