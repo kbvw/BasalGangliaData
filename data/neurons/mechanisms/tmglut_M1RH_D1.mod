@@ -44,6 +44,7 @@ NEURON {
     NONSPECIFIC_CURRENT i
     RANGE failRateDA, failRateACh, failRate
     USEION cal WRITE ical VALENCE 2
+    RANDOM rng
 }
 
 UNITS {
@@ -132,6 +133,8 @@ INITIAL {
     tp_nmda = 5.137
     factor_nmda = -exp(-tp_nmda/tau1_nmda) + exp(-tp_nmda/tau2_nmda) + exp(-tp_nmda/tau3_nmda)
     factor_nmda = 1/factor_nmda
+
+    random_setseq(rng, 0)
 }
 
 BREAKPOINT {
@@ -220,7 +223,7 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = random_uniform(rng)
 }
 
 

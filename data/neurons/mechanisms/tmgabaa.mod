@@ -29,6 +29,7 @@ where:
 ENDCOMMENT
 
 NEURON {
+    THREADSAFE
     POINT_PROCESS tmGabaA
     RANGE tau1, tau2, e, i, q
     RANGE tau, tauR, tauF, U, u0
@@ -36,6 +37,7 @@ NEURON {
     RANGE modACh, maxModACh, levelACh
     RANGE failRateDA, failRateACh, failRate
     NONSPECIFIC_CURRENT i
+    RANDOM rng
 }
 
 UNITS {
@@ -85,6 +87,8 @@ INITIAL {
     tp = (tau1*tau2)/(tau2-tau1) * log(tau2/tau1)
     factor = -exp(-tp/tau1) + exp(-tp/tau2)
     factor = 1/factor
+
+    random_setseq(rng, 0)
 }
 
 BREAKPOINT {
@@ -130,7 +134,7 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = random_uniform(rng)
 }
 
 

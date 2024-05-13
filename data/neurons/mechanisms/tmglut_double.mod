@@ -46,6 +46,7 @@ NEURON {
     RANGE maxMod_NMDADA, modACh, maxMod_NMDAACh			 
     NONSPECIFIC_CURRENT i
     USEION cal WRITE ical VALENCE 2
+    RANDOM rng
 }
 
 UNITS {
@@ -143,6 +144,7 @@ INITIAL {
     B_nmda = 0
     C_nmda = 0
 
+    random_setseq(rng, 0)
 }
 
 BREAKPOINT {
@@ -235,7 +237,7 @@ ENDVERBATIM
 }
 
 FUNCTION urand() {
-    urand = scop_random(1)
+    urand = random_uniform(rng)
 }
 
 FUNCTION modulationDA_NMDA() {
