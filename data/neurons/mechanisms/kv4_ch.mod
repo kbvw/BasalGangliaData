@@ -2,7 +2,7 @@ COMMENT
 
 c1 - c2 - c3 - c4 - o
 |    |    |    |    |
-i1 - i2 - i3 - i4 - i5 - is
+i1 - i2 - i3 - i4 - i5 - is_
 
 
 Neuromodulation is added as functions:
@@ -91,7 +91,7 @@ STATE {
 	i3
 	i4
 	i5
-	is
+	is_
 }
 
 BREAKPOINT {
@@ -116,7 +116,7 @@ KINETIC kin{LOCAL q10
 	~ i2 <-> i3 (2*alpha*a,2*beta/b)
 	~ i3 <-> i4 (alpha*a,3*beta/b)
 	~ i4 <-> i5 (q10*gamma,q10*delta)
-	~ i5 <-> is (q10*i5is,q10*isi5)
+	~ i5 <-> is_ (q10*i5is,q10*isi5)
 
 	~ i1 <-> c1 (q10*ic,q10*ci)
 	~ i2 <-> c2 (q10*ic/b,q10*ci*a)
@@ -124,7 +124,7 @@ KINETIC kin{LOCAL q10
 	~ i4 <-> c4 (q10*ic/b^3,q10*ci*a^3)
 	~ i5 <-> o  (q10*io,q10*oi)
 
-	CONSERVE c1+c2+c3+c4+i1+i2+i3+i4+i5+o+is=1
+	CONSERVE c1+c2+c3+c4+i1+i2+i3+i4+i5+o+is_=1
 }
 
 PROCEDURE rates(v(millivolt)) {LOCAL q10
