@@ -13,7 +13,7 @@ NEURON {
 	SUFFIX ca_ch
 	USEION ca READ cao, cai, ica WRITE cai, ica
 	RANGE ipump,last_ipump,test
-	GLOBAL vol, Buffer0
+	RANGE vol, frat, dsq, dsqvol, coord_done
 }
 
 DEFINE NANN  4
@@ -50,6 +50,10 @@ ASSIGNED {
 	test
 	cai		(mM)
 	vol[NANN]	(1)	: gets extra cm2 when multiplied by diam^2
+	frat[NANN]
+	dsq
+	dsqvol
+	coord_done
 	ipump           (mA/cm2)
 	last_ipump	(mA/cm2)
 }
