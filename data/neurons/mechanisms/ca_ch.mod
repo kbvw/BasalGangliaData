@@ -13,7 +13,10 @@ NEURON {
 	SUFFIX ca_ch
 	USEION ca READ cao, cai, ica WRITE cai, ica
 	RANGE ipump,last_ipump,test
-	RANGE vol, frat, dsq, dsqvol, coord_done
+	GLOBAL DFree, k1buf, k2buf, k1, k2, k3, k4, totpump, totbuf
+	RANGE vol
+	RANGE dsq, dsqvol
+	RANGE frat, coord_done
 }
 
 DEFINE NANN  4
@@ -41,7 +44,7 @@ PARAMETER {
         k4	= 5.e6	(um3/s)	: k1*5.e-4
 	totpump	= 0.2	(mol/cm2)
 	totbuf	= 1.2	(mM)
-} 
+}
 
 CONSTANT { volo=1  (liter)}
 
@@ -50,12 +53,12 @@ ASSIGNED {
 	test
 	cai		(mM)
 	vol[NANN]	(1)	: gets extra cm2 when multiplied by diam^2
-	frat[NANN]
-	dsq
-	dsqvol
-	coord_done
 	ipump           (mA/cm2)
 	last_ipump	(mA/cm2)
+	dsq
+	dsqvol
+	frat[NANN]
+	coord_done
 }
 
 STATE {
@@ -74,7 +77,7 @@ BREAKPOINT {
 	test = 0
 }
 
-LOCAL coord_done
+:LOCAL coord_done
 
 INITIAL {
 	if (coord_done == 0) {
@@ -86,7 +89,7 @@ INITIAL {
 	FROM i=0 TO NANN-1 {
 		ca[i] = cai
 	}
- 
+
        	ipump 	= 0
         pump 	= totpump
         pumpca 	= (1e-18)*pump*cao*k4/k3
@@ -98,7 +101,7 @@ INITIAL {
 	}
 }
 
-LOCAL frat[NANN] 	: gets extra cm when multiplied by diam
+:LOCAL frat[NANN] 	: gets extra cm when multiplied by diam
 
 PROCEDURE coord() {
 	LOCAL r, dr2
@@ -122,7 +125,7 @@ PROCEDURE coord() {
 	}
 }
 
-LOCAL dsq, dsqvol : can't define local variable in KINETIC block or use
+:LOCAL dsq, dsqvol : can't define local variable in KINETIC block or use
 		:  in COMPARTMENT
 KINETIC state {
 	COMPARTMENT i, diam*diam*vol[i]*1(um) {ca CaBuffer Buffer}
@@ -156,12 +159,10 @@ concentrations are calculated at the edges of a dt interval.  With
 secondorder=2 everything turns out to be second order correct.
 
 From model:
-Maurice N, Mercer J, Chan CS, Hernandez-Lopez S, Held J, Tkatch T, Surmeier DJ. 
-D2 dopamine receptor-mediated modulation of voltage-dependent Na+ channels 
-reduces autonomous activity in striatal cholinergic interneurons. 
-J Neurosci. 2004 Nov 17;24(46):10289-301. doi: 10.1523/JNEUROSCI.2155-04.2004. 
+Maurice N, Mercer J, Chan CS, Hernandez-Lopez S, Held J, Tkatch T, Surmeier DJ.
+D2 dopamine receptor-mediated modulation of voltage-dependent Na+ channels
+reduces autonomous activity in striatal cholinergic interneurons.
+J Neurosci. 2004 Nov 17;24(46):10289-301. doi: 10.1523/JNEUROSCI.2155-04.2004.
 PMID: 15548642; PMCID: PMC6730305.
 
 ENDCOMMENT
-
-
